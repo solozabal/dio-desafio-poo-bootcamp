@@ -2,6 +2,7 @@ import br.com.dio.desafio.dominio.Bootcamp;
 import br.com.dio.desafio.dominio.Curso;
 import br.com.dio.desafio.dominio.Dev;
 import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.Conteudo;
 
 import java.time.LocalDate;
 
@@ -22,10 +23,6 @@ public class Main {
         mentoria.setDescricao("descrição mentoria java");
         mentoria.setData(LocalDate.now());
 
-        /*System.out.println(curso1);
-        System.out.println(curso2);
-        System.out.println(mentoria);*/
-
         Bootcamp bootcamp = new Bootcamp();
         bootcamp.setNome("Bootcamp Java Developer");
         bootcamp.setDescricao("Descrição Bootcamp Java Developer");
@@ -43,6 +40,11 @@ public class Main {
         System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
         System.out.println("Conteúdos Concluídos Camila:" + devCamila.getConteudosConcluidos());
         System.out.println("XP:" + devCamila.calcularTotalXp());
+        System.out.println("Dev Camila Progress: " + String.format("%.2f", devCamila.getProgressPercentage()) + "%");
+        System.out.println("Conteúdos Concluídos Camila: " + devCamila.getConteudosConcluidosCount());
+
+        devCamila.avaliarBootcamp(bootcamp, 5);
+        System.out.println("Nota do Bootcamp: " + bootcamp.getNota());
 
         System.out.println("-------");
 
@@ -55,9 +57,12 @@ public class Main {
         devJoao.progredir();
         System.out.println("-");
         System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
-        System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
+        System.out.println("Conteúdos Concluídos João:" + devJoao.getConteudosConcluidos());
         System.out.println("XP:" + devJoao.calcularTotalXp());
+        System.out.println("Dev João Progress: " + String.format("%.2f", devJoao.getProgressPercentage()) + "%");
+        System.out.println("Conteúdos Concluídos João: " + devJoao.getConteudosConcluidosCount());
 
+        devJoao.avaliarBootcamp(bootcamp, 5);
+        System.out.println("Nota do Bootcamp: " + bootcamp.getNota());
     }
-
 }

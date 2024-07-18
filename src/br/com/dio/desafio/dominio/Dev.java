@@ -7,6 +7,14 @@ public class Dev {
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
+    public void avaliarBootcamp(Bootcamp bootcamp, int nota) {
+        if (bootcamp.getDevsInscritos().contains(this)) {
+            bootcamp.setNota(5);
+            System.out.println("Bootcamp avaliado com nota 5");
+        } else {
+            System.out.println("Você não está inscrito neste Bootcamp");
+        }
+    }    
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
@@ -36,6 +44,15 @@ public class Dev {
                 .mapToDouble(Conteudo::calcularXp)
                 .sum();*/
     }
+    
+    public double getProgressPercentage() {
+        int totalContents = conteudosInscritos.size() + conteudosConcluidos.size();
+        int completedContents = conteudosConcluidos.size();
+        if (totalContents == 0) {
+            return 0; 
+        }
+        return (completedContents / (double) totalContents) * 100;
+    }
 
 
     public String getNome() {
@@ -56,6 +73,10 @@ public class Dev {
 
     public Set<Conteudo> getConteudosConcluidos() {
         return conteudosConcluidos;
+    }
+    
+    public int getConteudosConcluidosCount() {
+        return this.conteudosConcluidos.size();
     }
 
     public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
